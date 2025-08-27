@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, RenderResult, screen, fireEvent } from '@testing-library/react'
+import { render, RenderResult, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Calculator } from './Calculator'
 import { axe } from 'jest-axe'
@@ -21,13 +21,15 @@ describe('given a default calculator', () => {
   })
 
   it('should render calculate and reset buttons', () => {
-    expect(screen.getByRole('button', { name: /calculate/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /calculate/i }),
+    ).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /reset/i })).toBeInTheDocument()
   })
 
   it('should calculate sum when form is submitted', async () => {
     const user = userEvent.setup()
-    
+
     const firstInput = screen.getByLabelText('First number')
     const secondInput = screen.getByLabelText('Second number')
     const calculateButton = screen.getByRole('button', { name: /calculate/i })
@@ -41,7 +43,7 @@ describe('given a default calculator', () => {
 
   it('should calculate sum with decimal numbers', async () => {
     const user = userEvent.setup()
-    
+
     const firstInput = screen.getByLabelText('First number')
     const secondInput = screen.getByLabelText('Second number')
     const calculateButton = screen.getByRole('button', { name: /calculate/i })
@@ -55,9 +57,11 @@ describe('given a default calculator', () => {
 
   it('should reset form when reset button is clicked', async () => {
     const user = userEvent.setup()
-    
+
     const firstInput = screen.getByLabelText('First number') as HTMLInputElement
-    const secondInput = screen.getByLabelText('Second number') as HTMLInputElement
+    const secondInput = screen.getByLabelText(
+      'Second number',
+    ) as HTMLInputElement
     const calculateButton = screen.getByRole('button', { name: /calculate/i })
     const resetButton = screen.getByRole('button', { name: /reset/i })
 
@@ -78,17 +82,15 @@ describe('given a default calculator', () => {
 })
 
 describe('given a calculator with custom labels', () => {
-  let rendered: RenderResult
-
   beforeEach(() => {
-    rendered = render(
+    render(
       <Calculator
-        firstNumberLabel="Första talet"
-        secondNumberLabel="Andra talet"
-        calculateButtonLabel="Beräkna"
-        resetButtonLabel="Rensa"
-        resultLabel="Resultat:"
-      />
+        firstNumberLabel='Första talet'
+        secondNumberLabel='Andra talet'
+        calculateButtonLabel='Beräkna'
+        resetButtonLabel='Rensa'
+        resultLabel='Resultat:'
+      />,
     )
   })
 
@@ -101,7 +103,7 @@ describe('given a calculator with custom labels', () => {
 
   it('should display result with custom label', async () => {
     const user = userEvent.setup()
-    
+
     const firstInput = screen.getByLabelText('Första talet')
     const secondInput = screen.getByLabelText('Andra talet')
     const calculateButton = screen.getByRole('button', { name: /beräkna/i })
