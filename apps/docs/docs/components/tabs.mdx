@@ -106,14 +106,7 @@ H채r 채r ett exempel p책 flikar d채r varje flik har en st채ngningsknapp. Detta �
 ```tsx
 import React, { useState } from 'react'
 import { X } from 'lucide-react'
-import {
-  Tab,
-  TabList,
-  Tabs,
-  TabPanel,
-  Text,
-  Button,
-} from '@midas-ds/components'
+import { Tab, TabList, Tabs, TabPanel, Text, Button, tabStyles } from '@midas-ds/components'
 
 export const ClosableTabsExample = () => {
   const [openTabs, setOpenTabs] = useState([
@@ -122,8 +115,7 @@ export const ClosableTabsExample = () => {
   ])
 
   const handleCloseTab = (idToClose: string) => {
-    if (openTabs.length > 1)
-      setOpenTabs(prevTabs => prevTabs.filter(tab => tab.id !== idToClose))
+    if (openTabs.length > 1) setOpenTabs(prevTabs => prevTabs.filter(tab => tab.id !== idToClose))
   }
 
   return (
@@ -133,10 +125,13 @@ export const ClosableTabsExample = () => {
           <Tab
             key={tab.id}
             id={tab.id}
-            style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}
+            className={tabStyles.closableTab}
           >
             {tab.title}
-            <Button variant='icon' onPress={() => handleCloseTab(tab.id)}>
+            <Button
+              variant='icon'
+              onPress={() => handleCloseTab(tab.id)}
+            >
               <X size={16} />
             </Button>
           </Tab>

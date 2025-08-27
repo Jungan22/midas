@@ -3,20 +3,12 @@
 import styles from './Accordion.module.css'
 import * as React from 'react'
 import clsx from 'clsx'
-import {
-  DisclosureGroup,
-  DisclosureGroupProps,
-} from 'react-aria-components'
+import { DisclosureGroup, DisclosureGroupProps } from 'react-aria-components'
 import { AccordionContext } from './AccordionContext'
 
 export const ACCORDION_TEST_ID = 'accordion'
 
 export interface MidasAccordion extends DisclosureGroupProps {
-  /**
-   * Display either the larger contained variant or a smaller uncontained variant
-   * @deprecated since 11.0.0. Please use `isContained` instead
-   **/
-  variant?: 'uncontained' | 'contained'
   children?: React.ReactNode
   isDisabled?: boolean
   isContained?: boolean
