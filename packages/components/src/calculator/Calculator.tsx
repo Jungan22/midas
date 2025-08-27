@@ -124,5 +124,3 @@ export const Calculator = ({
     </Form>
   )
 }
-
-export type { CalculatorProps }
