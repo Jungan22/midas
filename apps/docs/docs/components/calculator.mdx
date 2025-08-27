@@ -1,0 +1,77 @@
+---
+title: Calculator
+description: En kalkylator-komponent som gör det möjligt för användare att lägga ihop två nummer.
+---
+
+import { PropTable } from '@site/src/components/PropsTable'
+import { Calculator } from '@midas-ds/components'
+import { ComponentHeader } from '@site/src/components/getComponentMetaData'
+
+<ComponentHeader
+  name='Calculator'
+  friendlyName='Kalkylator'
+/>
+
+En komponent som gör det möjligt för användare att mata in två nummer och beräkna deras summa. Komponenten är byggd med befintliga Midas-komponenter och följer designsystemets tillgänglighetsstandarder.
+
+```tsx
+import { Calculator } from '@midas-ds/components'
+```
+
+## Grundläggande användning
+
+```tsx
+<Calculator />
+```
+
+<div className='card'>
+  <Calculator />
+</div>
+
+## Med svenska etiketter
+
+```tsx
+<Calculator
+  firstNumberLabel="Första talet"
+  secondNumberLabel="Andra talet"
+  calculateButtonLabel="Beräkna"
+  resetButtonLabel="Rensa"
+  resultLabel="Resultat:"
+  firstNumberPlaceholder="Ange första talet"
+  secondNumberPlaceholder="Ange andra talet"
+/>
+```
+
+<div className='card'>
+  <Calculator
+    firstNumberLabel="Första talet"
+    secondNumberLabel="Andra talet"
+    calculateButtonLabel="Beräkna"
+    resetButtonLabel="Rensa"
+    resultLabel="Resultat:"
+    firstNumberPlaceholder="Ange första talet"
+    secondNumberPlaceholder="Ange andra talet"
+  />
+</div>
+
+## Funktionalitet
+
+Kalkylatorn stöder:
+
+- **Addition av heltal och decimaler**: Fungerar med både heltal (t.ex. 5 + 3 = 8) och decimaltal (t.ex. 2.5 + 7.3 = 9.8)
+- **Formulärvalidering**: Båda fälten är obligatoriska och accepterar endast numeriska värden
+- **Återställningsfunktion**: Rensa-knappen återställer alla fält och resultatet
+- **Tillgänglighet**: Byggd på React Aria Components för fullständig tangentbordsstöd
+
+## API
+
+<PropTable component='Calculator' />
+
+## Designprinciper
+
+Kalkylatorn följer Midas designsystemets principer:
+
+- **Konsistens**: Använder befintliga komponenter som TextField, Button och Text
+- **Tillgänglighet**: Fullständigt stöd för skärmläsare och tangentbordsnavigering
+- **Responsivitet**: Anpassar sig till olika skärmstorlekar
+- **Användarvänlighet**: Tydliga etiketter och feedback vid interaktion
