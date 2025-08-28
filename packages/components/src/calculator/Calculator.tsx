@@ -14,15 +14,10 @@ export interface CalculatorProps {
    */
   className?: string
   /**
-   * Label for the first number input field
-   * @default "First number"
+   * Number of input fields to display (2-10)
+   * @default 2
    */
-  firstNumberLabel?: string
-  /**
-   * Label for the second number input field
-   * @default "Second number"
-   */
-  secondNumberLabel?: string
+  numberOfInputs?: number
   /**
    * Label for the calculate button
    * @default "Calculate"
@@ -39,76 +34,111 @@ export interface CalculatorProps {
    */
   resultLabel?: string
   /**
-   * Placeholder text for the first number input
-   * @default "Enter first number"
+   * Label for the add number button
+   * @default "Add number"
    */
-  firstNumberPlaceholder?: string
+  addNumberLabel?: string
   /**
-   * Placeholder text for the second number input
-   * @default "Enter second number"
+   * Label for the remove number button
+   * @default "Remove number"
    */
-  secondNumberPlaceholder?: string
+  removeNumberLabel?: string
 }
 
 export const Calculator = ({
   className,
-  firstNumberLabel = 'First number',
-  secondNumberLabel = 'Second number',
+  numberOfInputs = 2,
   calculateButtonLabel = 'Calculate',
   resetButtonLabel = 'Reset',
   resultLabel = 'Result:',
-  firstNumberPlaceholder = 'Enter first number',
-  secondNumberPlaceholder = 'Enter second number',
+  addNumberLabel = 'Add number',
+  removeNumberLabel = 'Remove number',
 }: CalculatorProps) => {
-  const [number1, setNumber1] = React.useState('')
-  const [number2, setNumber2] = React.useState('')
+  // Ensure numberOfInputs is between 2 and 10
+  const validNumberOfInputs = Math.min(Math.max(numberOfInputs, 2), 10)
+
+  const [numbers, setNumbers] = React.useState<string[]>(() =>
+    Array(validNumberOfInputs).fill(''),
+  )
   const [result, setResult] = React.useState<number | null>(null)
 
   const handleCalculate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const num1 = parseFloat(number1)
-    const num2 = parseFloat(number2)
+    const parsedNumbers = numbers.map(num => parseFloat(num))
+    const validNumbers = parsedNumbers.filter(num => !isNaN(num))
 
-    if (!isNaN(num1) && !isNaN(num2)) {
-      setResult(num1 + num2)
+    if (validNumbers.length > 0) {
+      setResult(validNumbers.reduce((sum, num) => sum + num, 0))
     } else {
       setResult(null)
     }
   }
 
   const handleReset = () => {
-    setNumber1('')
-    setNumber2('')
+    setNumbers(Array(numbers.length).fill(''))
     setResult(null)
+  }
+
+  const handleNumberChange = (index: number, value: string) => {
+    const newNumbers = [...numbers]
+    newNumbers[index] = value
+    setNumbers(newNumbers)
+  }
+
+  const handleAddNumber = () => {
+    if (numbers.length < 10) {
+      setNumbers([...numbers, ''])
+    }
+  }
+
+  const handleRemoveNumber = () => {
+    if (numbers.length > 2) {
+      setNumbers(numbers.slice(0, -1))
+    }
   }
 
   return (
     <Form
       onSubmit={handleCalculate}
-      className={className ? `${styles.calculator} ${className}` : styles.calculator}
+      className={
+        className ? `${styles.calculator} ${className}` : styles.calculator
+      }
     >
-      <TextField
-        label={firstNumberLabel}
-        type="number"
-        value={number1}
-        onChange={setNumber1}
-        placeholder={firstNumberPlaceholder}
-        isRequired
-      />
-      <TextField
-        label={secondNumberLabel}
-        type="number"
-        value={number2}
-        onChange={setNumber2}
-        placeholder={secondNumberPlaceholder}
-        isRequired
-      />
-      <ButtonGroup>
-        <Button type="submit">{calculateButtonLabel}</Button>
+      {numbers.map((number, index) => (
+        <TextField
+          key={index}
+          label={`Number ${index + 1}`}
+          type='number'
+          value={number}
+          onChange={value => handleNumberChange(index, value)}
+        />
+      ))}
+
+      <div className={styles.controls}>
         <Button
-          type="button"
-          variant="secondary"
+          type='button'
+          variant='secondary'
+          onPress={handleAddNumber}
+          isDisabled={numbers.length >= 10}
+        >
+          {addNumberLabel}
+        </Button>
+        <Button
+          type='button'
+          variant='secondary'
+          onPress={handleRemoveNumber}
+          isDisabled={numbers.length <= 2}
+        >
+          {removeNumberLabel}
+        </Button>
+      </div>
+
+      <ButtonGroup>
+        <Button type='submit'>{calculateButtonLabel}</Button>
+        <Button
+          type='button'
+          variant='secondary'
           onPress={handleReset}
         >
           {resetButtonLabel}
@@ -117,7 +147,9 @@ export const Calculator = ({
       {result !== null && (
         <div className={styles.result}>
           <Text>
-            <strong>{resultLabel} {result}</strong>
+            <strong>
+              {resultLabel} {result}
+            </strong>
           </Text>
         </div>
       )}

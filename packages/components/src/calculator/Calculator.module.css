@@ -4,6 +4,12 @@
   gap: 1rem;
 }
 
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
 .result {
   margin-top: 1rem;
   padding: 1rem;
