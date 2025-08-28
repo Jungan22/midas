@@ -173,3 +173,6 @@ export const ServerValidation = () => {
     </Form>
   )
 }
+
+// Export Calculator component from separate file
+export { Calculator } from './CalculatorExamples'
