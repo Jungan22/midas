@@ -219,4 +219,47 @@ describe('given a calculator with multiple numbers', () => {
     expect(screen.getByLabelText('Number 10')).toBeInTheDocument()
     expect(screen.queryByLabelText('Number 11')).not.toBeInTheDocument()
   })
+
+  it('should reset number of input fields to default when reset button is clicked', async () => {
+    const user = userEvent.setup()
+    render(<Calculator numberOfInputs={3} />)
+
+    const addButton = screen.getByRole('button', { name: /add number/i })
+    const resetButton = screen.getByRole('button', { name: /reset/i })
+
+    // Initially should have 3 inputs (the numberOfInputs prop)
+    expect(screen.getByLabelText('Number 1')).toBeInTheDocument()
+    expect(screen.getByLabelText('Number 2')).toBeInTheDocument()
+    expect(screen.getByLabelText('Number 3')).toBeInTheDocument()
+    expect(screen.queryByLabelText('Number 4')).not.toBeInTheDocument()
+
+    // Add two more inputs to make 5 total
+    await user.click(addButton)
+    await user.click(addButton)
+
+    // Now should have 5 inputs
+    expect(screen.getByLabelText('Number 4')).toBeInTheDocument()
+    expect(screen.getByLabelText('Number 5')).toBeInTheDocument()
+
+    // Fill in some values
+    const input1 = screen.getByLabelText('Number 1') as HTMLInputElement
+    const input4 = screen.getByLabelText('Number 4') as HTMLInputElement
+    await user.type(input1, '10')
+    await user.type(input4, '20')
+
+    // Reset the form
+    await user.click(resetButton)
+
+    // Should revert back to the original 3 inputs (numberOfInputs prop)
+    expect(screen.getByLabelText('Number 1')).toBeInTheDocument()
+    expect(screen.getByLabelText('Number 2')).toBeInTheDocument()
+    expect(screen.getByLabelText('Number 3')).toBeInTheDocument()
+    expect(screen.queryByLabelText('Number 4')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Number 5')).not.toBeInTheDocument()
+
+    // All remaining input values should be cleared
+    expect((screen.getByLabelText('Number 1') as HTMLInputElement).value).toBe('')
+    expect((screen.getByLabelText('Number 2') as HTMLInputElement).value).toBe('')
+    expect((screen.getByLabelText('Number 3') as HTMLInputElement).value).toBe('')
+  })
 })
