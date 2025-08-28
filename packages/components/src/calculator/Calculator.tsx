@@ -76,7 +76,7 @@ export const Calculator = ({
   }
 
   const handleReset = () => {
-    setNumbers(Array(numbers.length).fill(''))
+    setNumbers(Array(validNumberOfInputs).fill(''))
     setResult(null)
   }
 
