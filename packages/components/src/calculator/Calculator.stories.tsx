@@ -7,13 +7,21 @@ const meta: Meta<typeof Calculator> = {
   tags: ['autodocs'],
   args: {},
   argTypes: {
-    firstNumberLabel: { type: 'string' },
-    secondNumberLabel: { type: 'string' },
+    numberOfInputs: {
+      type: 'number',
+      control: {
+        type: 'range',
+        min: 2,
+        max: 10,
+        step: 1,
+      },
+      description: 'Number of input fields to display (2-10)',
+    },
     calculateButtonLabel: { type: 'string' },
     resetButtonLabel: { type: 'string' },
     resultLabel: { type: 'string' },
-    firstNumberPlaceholder: { type: 'string' },
-    secondNumberPlaceholder: { type: 'string' },
+    addNumberLabel: { type: 'string' },
+    removeNumberLabel: { type: 'string' },
   },
 }
 
@@ -26,24 +34,33 @@ export const Default: Story = {
 
 export const WithSwedishLabels: Story = {
   args: {
-    firstNumberLabel: 'Första talet',
-    secondNumberLabel: 'Andra talet',
     calculateButtonLabel: 'Beräkna',
     resetButtonLabel: 'Rensa',
     resultLabel: 'Resultat:',
-    firstNumberPlaceholder: 'Ange första talet',
-    secondNumberPlaceholder: 'Ange andra talet',
+    addNumberLabel: 'Lägg till nummer',
+    removeNumberLabel: 'Ta bort nummer',
+  },
+}
+
+export const WithFiveNumbers: Story = {
+  args: {
+    numberOfInputs: 5,
+  },
+}
+
+export const WithMaxNumbers: Story = {
+  args: {
+    numberOfInputs: 10,
   },
 }
 
 export const WithCustomLabels: Story = {
   args: {
-    firstNumberLabel: 'Value A',
-    secondNumberLabel: 'Value B',
-    calculateButtonLabel: 'Add Numbers',
+    numberOfInputs: 3,
+    calculateButtonLabel: 'Sum All',
     resetButtonLabel: 'Clear All',
-    resultLabel: 'Sum:',
-    firstNumberPlaceholder: 'Enter value A',
-    secondNumberPlaceholder: 'Enter value B',
+    resultLabel: 'Total:',
+    addNumberLabel: '+ Add Number',
+    removeNumberLabel: '- Remove Number',
   },
 }
