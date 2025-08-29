@@ -1,0 +1,169 @@
+---
+title: TicTacToe
+description: En interaktiv tic-tac-toe spel komponent där användare kan spela mot en datoropponent.
+---
+
+import { PropTable } from '@site/src/components/PropsTable'
+import { TicTacToe } from '@midas-ds/components'
+import { ComponentHeader } from '@site/src/components/getComponentMetaData'
+
+<ComponentHeader
+  name='TicTacToe'
+  friendlyName='Tic-tac-toe spel'
+/>
+
+En interaktiv tic-tac-toe spel komponent där användare kan konkurrera mot en datoropponent. Komponenten följer Midas designriktlinjer med fullständig tillgänglighetsstöd och tangentbordsnavigation.
+
+```tsx
+import { TicTacToe } from '@midas-ds/components'
+```
+
+```tsx
+<TicTacToe />
+```
+
+<div className='card'>
+  <TicTacToe />
+</div>
+
+## Funktioner
+
+- Tre svårighetsgrader (easy, medium, hard)
+- Dator AI-motståndare med minimax-algoritm för svår svårighetsgrad
+- Fullständigt tillgänglighetsstöd med ARIA-etiketter och skärmläsarmeddelanden
+- Stöd för tangentbordsnavigation
+- Responsiv design
+- Anpassningsbara etiketter och spelarsymboler
+
+## Varianter
+
+### Olika svårighetsgrader
+
+#### Lätt svårighetsgrad
+
+```tsx
+<TicTacToe difficulty="easy" />
+```
+
+<div className='card'>
+  <TicTacToe difficulty="easy" />
+</div>
+
+#### Medium svårighetsgrad (standard)
+
+```tsx
+<TicTacToe difficulty="medium" />
+```
+
+<div className='card'>
+  <TicTacToe difficulty="medium" />
+</div>
+
+#### Svår svårighetsgrad
+
+```tsx
+<TicTacToe difficulty="hard" />
+```
+
+<div className='card'>
+  <TicTacToe difficulty="hard" />
+</div>
+
+### Anpassade spelarsymboler
+
+Du kan välja om du vill spela som X eller O:
+
+```tsx
+<TicTacToe playerSymbol="O" />
+```
+
+<div className='card'>
+  <TicTacToe playerSymbol="O" />
+</div>
+
+### Anpassade knappetiketter
+
+För lokalisering eller anpassning kan du ändra knapptexterna:
+
+```tsx
+<TicTacToe
+  resetButtonLabel="Återställ spel"
+  newGameButtonLabel="Nytt spel"
+/>
+```
+
+<div className='card'>
+  <TicTacToe
+    resetButtonLabel="Återställ spel"
+    newGameButtonLabel="Nytt spel"
+  />
+</div>
+
+### Inaktiverat läge
+
+```tsx
+<TicTacToe isDisabled={true} />
+```
+
+<div className='card'>
+  <TicTacToe isDisabled={true} />
+</div>
+
+### Med spelstatusåteranrop
+
+Du kan lyssna på ändringar i spelstatus:
+
+```tsx
+<TicTacToe
+  onGameStateChange={(gameState) => {
+    console.log('Spelstatus ändrad:', gameState)
+  }}
+/>
+```
+
+<div className='card'>
+  <TicTacToe
+    onGameStateChange={(gameState) => {
+      console.log('Spelstatus ändrad:', gameState)
+    }}
+  />
+</div>
+
+## Användning
+
+### Grundläggande spel
+
+Komponenten skapar automatiskt ett 3x3 rutnät där användaren kan klicka för att placera sin symbol. Datorn kommer att svara automatiskt efter användarens drag.
+
+### Tangentbordsnavigation
+
+- Använd **Tab** för att navigera mellan celler och knappar
+- Använd **Enter** eller **Space** för att välja en cell eller aktivera en knapp
+- Spelbrädet meddelar aktuell status till skärmläsare
+
+### Tillgänglighet
+
+Komponenten inkluderar:
+- ARIA-etiketter för alla interaktiva element
+- Statusuppdateringar som meddelas till skärmläsare
+- Fokushantering för tangentbordsanvändare
+- Tydlig visuell feedback för spelstatus
+
+## Riktlinjer
+
+### När ska komponenten användas
+
+- I utbildningsapplikationer för att lära ut spelteori eller strategi
+- Som pausaktivitet i längre formulär eller arbetsflöden
+- I spelsamlingar eller nöjesapplikationer
+- För att demonstrera interaktiva komponenter i designsystem
+
+### Anpassning
+
+- Använd `difficulty` för att anpassa utmaningsnivån baserat på målgrupp
+- Anpassa `resetButtonLabel` och `newGameButtonLabel` för lokalisering
+- Använd `onGameStateChange` för att integrera med analytics eller spelprogression
+
+## API
+
+<PropTable name='TicTacToe' />
