@@ -25,6 +25,7 @@ import {
   DropdownItem,
   DialogTrigger,
   InfoBanner,
+  TicTacToe,
 } from '@midas-ds/components'
 
 import { theme } from '@midas-ds/components/theme'
@@ -57,4 +58,5 @@ export {
   Dropdown,
   DropdownItem,
   InfoBanner,
+  TicTacToe,
 }
