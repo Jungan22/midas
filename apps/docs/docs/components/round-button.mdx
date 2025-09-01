@@ -1,0 +1,215 @@
+---
+title: RoundButton
+description: Rundad knapp som visar en gul glöd när den trycks ned. Perfekt för flytande åtgärdsknappar eller ikon-endast interaktioner.
+---
+
+import { PropTable } from '@site/src/components/PropsTable'
+import { ComponentHeader } from '@site/src/components/getComponentMetaData'
+import { RoundButton } from '@midas-ds/components'
+import { Plus, X, Heart, Star, Settings } from 'lucide-react'
+
+<ComponentHeader
+  name='RoundButton'
+  friendlyName='Rundad knapp'
+  overrideHeadlessLink='https://react-spectrum.adobe.com/react-aria/Button.html'
+/>
+
+Rundad knappkomponent som visar en gul glöd när den trycks ned. Perfekt för flytande åtgärdsknappar eller ikon-endast interaktioner.
+
+```tsx
+import { RoundButton } from '@midas-ds/components'
+import { Plus } from 'lucide-react'
+```
+
+```tsx
+<RoundButton
+  icon={Plus}
+  aria-label="Add item"
+/>
+```
+
+<div className='card'>
+  <RoundButton
+    icon={Plus}
+    aria-label="Add item"
+  />
+</div>
+
+## Varianter
+
+### Primär
+
+Primär rundknapp används för den viktigaste handlingen, som att lägga till nytt innehåll eller bekräfta en åtgärd.
+
+```tsx
+<RoundButton
+  icon={Plus}
+  aria-label="Add item"
+/>
+```
+
+<div className='card'>
+  <RoundButton
+    icon={Plus}
+    aria-label="Add item"
+  />
+</div>
+
+### Sekundär
+
+Sekundär rundknapp används för underordnade handlingar som inställningar eller konfiguration.
+
+```tsx
+<RoundButton
+  variant="secondary"
+  icon={Settings}
+  aria-label="Settings"
+/>
+```
+
+<div className='card'>
+  <RoundButton
+    variant="secondary"
+    icon={Settings}
+    aria-label="Settings"
+  />
+</div>
+
+### Tertiär
+
+Tertiär rundknapp används för mjuka handlingar som att gilla eller markera innehåll.
+
+```tsx
+<RoundButton
+  variant="tertiary"
+  icon={Heart}
+  aria-label="Like"
+/>
+```
+
+<div className='card'>
+  <RoundButton
+    variant="tertiary"
+    icon={Heart}
+    aria-label="Like"
+  />
+</div>
+
+### Fara
+
+Farlig rundknapp används för destruktiva handlingar som att ta bort eller stänga.
+
+```tsx
+<RoundButton
+  variant="danger"
+  icon={X}
+  aria-label="Close"
+/>
+```
+
+<div className='card'>
+  <RoundButton
+    variant="danger"
+    icon={X}
+    aria-label="Close"
+  />
+</div>
+
+## Storlekar
+
+RoundButton kommer i två storlekar: stor (48px diameter) och medium (40px diameter).
+
+```tsx
+<div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+  <RoundButton
+    size="large"
+    icon={Plus}
+    aria-label="Add item (large)"
+  />
+  <RoundButton
+    size="medium"
+    icon={Plus}
+    aria-label="Add item (medium)"
+  />
+</div>
+```
+
+<div className='card'>
+  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+    <RoundButton
+      size="large"
+      icon={Plus}
+      aria-label="Add item (large)"
+    />
+    <RoundButton
+      size="medium"
+      icon={Plus}
+      aria-label="Add item (medium)"
+    />
+  </div>
+</div>
+
+## Med text
+
+RoundButton kan också innehålla text istället för eller tillsammans med en ikon.
+
+```tsx
+<RoundButton aria-label="Add new item">
+  Add
+</RoundButton>
+```
+
+<div className='card'>
+  <RoundButton aria-label="Add new item">
+    Add
+  </RoundButton>
+</div>
+
+## Inaktiverad
+
+En inaktiverad rundknapp kan inte interageras med.
+
+```tsx
+<RoundButton
+  icon={Plus}
+  aria-label="Add item"
+  isDisabled
+/>
+```
+
+<div className='card'>
+  <RoundButton
+    icon={Plus}
+    aria-label="Add item"
+    isDisabled
+  />
+</div>
+
+## Riktlinjer
+
+### Val av komponent
+
+- Använd RoundButton för flytande åtgärdsknappar (FAB - Floating Action Button)
+- Perfekt för ikon-endast interaktioner där den runda formen betonar åtgärden
+- Använd för snabba åtgärder som "lägg till", "favorit", "stäng" eller "inställningar"
+
+### Användningsområden
+
+- Flytande åtgärdsknappar som följer med användaren vid skrollning
+- Kompakta gränssnitt där utrymmet är begränsat
+- Ikon-baserade navigeringselement
+- Snabba åtgärder i listor eller kort
+
+### Tillgänglighet
+
+- Använd alltid `aria-label` för att beskriva knappens funktion
+- Se till att ikonen är tydlig och förståelig för användaren
+- Testa med skärmläsare för att säkerställa god tillgänglighet
+
+### Gul glöd-effekt
+
+RoundButton har en unik gul glöd-effekt när den trycks ned, vilket ger användaren tydlig visuell feedback. Denna effekt är automatisk och kräver ingen extra konfiguration.
+
+## API
+
+<PropTable name='RoundButton' />
