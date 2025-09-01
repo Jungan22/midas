@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionItem,
   Button,
+  RoundButton,
   Checkbox,
   CheckboxGroup,
   Logo,
@@ -32,6 +33,7 @@ import { theme } from '@midas-ds/components/theme'
 
 export {
   Button,
+  RoundButton,
   Accordion,
   AccordionItem,
   Checkbox,
