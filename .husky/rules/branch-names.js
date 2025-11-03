@@ -10,6 +10,7 @@ const allowedPrefixes = [
   'test/',
   'chore/',
   'hotfix/',
+  'copilot/',
   'main',
   'HEAD',
 ]
